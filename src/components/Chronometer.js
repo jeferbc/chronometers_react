@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactInterval from 'react-interval';
+import { Button } from 'react-bootstrap';
 import store from '../store';
 
 class Chronometer extends Component {
@@ -19,6 +20,7 @@ class Chronometer extends Component {
       ms: 0
     }
   }
+
   render() {
     return (
       <div className="Chronometer">
@@ -26,14 +28,13 @@ class Chronometer extends Component {
         <p>Descripcion del cronometro</p>
         <p>{ "Running = " + this.state.running }</p>
         <h2>{ this.state.hours + ":" + this.state.minutes + ":" + this.state.seconds + ":" + this.state.ms }</h2>
-        <button type="button" href="#" onClick={ this.toggleChronometer }>{ this.state.running === true ? "Stop" : "Start" }</button>
+        <Button bsStyle="success" onClick={ this.toggleChronometer }>{ this.state.running === true ? "Stop" : "Start" }</Button>
       </div>
     );
   }
 
   toggleChronometer(){
     this.setState({ running: !this.state.running });
-    console.log(this.state.running)
     if (this.state.running === false)
       this.handleStart();
     else
@@ -70,6 +71,11 @@ class Chronometer extends Component {
       minutes = 0;
       hours = hours + 1;
     }
+
+    if(hours > 99){
+      hours = 0;
+    }
+
     this.update(ms, seconds, minutes, hours);
   }
 
