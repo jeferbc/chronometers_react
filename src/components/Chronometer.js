@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactInterval from 'react-interval';
-import { Button } from 'react-bootstrap';
+import { Button, Jumbotron, Grid, Row, Col } from 'react-bootstrap';
 import store from '../store';
 
 class Chronometer extends Component {
@@ -23,13 +23,16 @@ class Chronometer extends Component {
 
   render() {
     return (
-      <div className="Chronometer">
-        <h3>Titulo del cronometro</h3>
-        <p>Descripcion del cronometro</p>
-        <p>{ "Running = " + this.state.running }</p>
-        <h2>{ this.state.hours + ":" + this.state.minutes + ":" + this.state.seconds + ":" + this.state.ms }</h2>
-        <Button bsStyle="success" onClick={ this.toggleChronometer }>{ this.state.running === true ? "Stop" : "Start" }</Button>
-      </div>
+      <Grid>
+        <Col md={6}>
+          <Jumbotron>
+            <h3 className="text-center">Titulo del cronometro</h3>
+            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <h2 className="text-center">{ this.state.hours + ":" + this.state.minutes + ":" + this.state.seconds + ":" + this.state.ms }</h2>
+            <p className="text-center"><Button bsStyle="success" onClick={ this.toggleChronometer }>{ this.state.running === true ? "Stop" : "Start" }</Button></p>
+          </Jumbotron>
+        </Col>
+      </Grid>
     );
   }
 
